@@ -49,6 +49,3 @@ Storage and the ACPI fix are hardware-specific, so follow their guides in `docs/
 ## Disclaimer
 
 These scripts change system settings and some of them **erase disks**. Read them before running. They are provided as-is under the MIT license, with no warranty.
-# atmos-stick-lite
-# atmos-stick-lite
-# atmos-stick-lite
