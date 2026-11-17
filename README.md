@@ -9,7 +9,7 @@ Everything here was worked out on real hardware, one problem at a time. Each scr
 | [`debloat/`](debloat) | Trims login apps, background services and packages. Tunes Firefox for 2 GB RAM. |
 | [`docs/boot-hang-fix.md`](docs/boot-hang-fix.md) | Fixes the "stuck after the MX logo" boot hang on Cherry Trail. |
 | [`acpi/`](acpi) + [`docs/acpi-cherryview-fix.md`](docs/acpi-cherryview-fix.md) | Removes the `cherryview-pinctrl INT33FF:04 … error -61` message by overriding the DSDT. |
-| [`storage/`](storage) + [`docs/sd-card-cloud.md`](docs/sd-card-cloud.md) | Two SD cards as exFAT cloud storage, mounted at boot, fixes for USB-reader dropouts, nightly versioned backup, Tailscale remote access. |
+| [`storage/`](storage) + [`docs/sd-card-cloud.md`](docs/sd-card-cloud.md) | Two SD cards as exFAT cloud storage, mounted at boot, fixes for USB-reader dropouts, nightly versioned backup, phone alerts if a card or backup fails (`storage/health-check.sh`), Tailscale remote access. |
 
 ## Why sysvinit matters
 
