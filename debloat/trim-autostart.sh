@@ -6,7 +6,7 @@
 #   bash debloat/trim-autostart.sh --undo   # restore
 # Edit the list below and remove anything you want to keep.
 APPS="zpicom conky magnus-autostart onboard-autostart orca-autostart at-spi-dbus-bus
-xfce4-notes-autostart spice-vdagent print-applet blueman Blueman-start
+xfce4-notes-autostart spice-vdagent print-applet
 zstartup-sound mx-tweak-tray-app-autostart cleanup-notifier-mx mx-updater-autostart
 mx-usb-unmounter gnome-keyring-pkcs11 gnome-keyring-ssh xfce4-screensaver
 xfce4-clipman-plugin-autostart zrestore-software-brightness"
