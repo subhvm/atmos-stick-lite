@@ -22,3 +22,16 @@ OWNER_GID=1000
 # USB vendor:product IDs of the card reader (and the hub it sits on) that must
 # never be autosuspended. Find them with: lsusb
 READER_USB_IDS="05e3:0764"
+
+# Optional: put YOUR values in ~/.config/atmos-stick.conf (same variable names) instead
+# of editing this file. That keeps your card IDs and alert channel out of git.
+# Extra settings it may hold: BACKUP_DIR, BACKUP_OLD_DIR, BACKUP_LOG, NTFY_TOPIC, FULL_PCT.
+_home=$(getent passwd "${SUDO_USER:-$(id -un)}" | cut -d: -f6)
+[ -f "${ATMOS_CONF:=$_home/.config/atmos-stick.conf}" ] && . "$ATMOS_CONF"
+
+# True only if a card is mounted at $1 AND actually readable. A card that dropped out
+# of a USB reader leaves a "zombie" mount that passes `mountpoint` but gives I/O errors.
+card_ok() {
+  local src; src=$(findmnt -no SOURCE "$1" 2>/dev/null) || return 1
+  [ -b "$src" ] && timeout 10 ls "$1" >/dev/null 2>&1
+}

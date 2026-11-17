@@ -6,14 +6,12 @@
 # Setup (as your normal user, no sudo):
 #   1. Pick a long random channel name and save it OUTSIDE the repo (anyone who
 #      knows the name can read the alerts):
-#        mkdir -p ~/.config && echo "NTFY_TOPIC=stick-$(head -c12 /dev/urandom | base64 | tr -dc a-zA-Z0-9)" > ~/.config/stick-health.conf
+#        mkdir -p ~/.config && echo "NTFY_TOPIC=stick-$(head -c12 /dev/urandom | base64 | tr -dc a-zA-Z0-9)" >> ~/.config/atmos-stick.conf
 #   2. Install the ntfy app on your phone and subscribe to that channel name.
 #   3. Test:   storage/health-check.sh --test
 #   4. Run every 15 minutes:
 #        (crontab -l 2>/dev/null; echo "*/15 * * * * $PWD/storage/health-check.sh") | crontab -
 . "$(dirname "$0")/config.sh"
-CONF="$HOME/.config/stick-health.conf"
-[ -f "$CONF" ] && . "$CONF"
 BACKUP_LOG="${BACKUP_LOG:-$HOME/cloud-backup.log}"   # where backup.sh writes (see its crontab line)
 FULL_PCT="${FULL_PCT:-90}"
 NTFY_SERVER="${NTFY_SERVER:-https://ntfy.sh}"
@@ -32,8 +30,8 @@ fi
 
 problems=()
 for m in "$MAIN" "$SPARE"; do
-  if ! mountpoint -q "$m"; then
-    problems+=("$m is not mounted")
+  if ! card_ok "$m"; then
+    problems+=("$m is not mounted or not readable (card dropped out?)")
   else
     pct=$(df --output=pcent "$m" | tail -1 | tr -dc 0-9)
     [ "$pct" -ge "$FULL_PCT" ] && problems+=("$m is ${pct}% full")
