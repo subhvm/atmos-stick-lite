@@ -1,0 +1,8 @@
+# Never commit firmware dumps or local secrets
+*.dat
+*.aml
+*.dsl
+*.hex
+acpi_override
+*login*.txt
+*.log
